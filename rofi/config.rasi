@@ -1,0 +1,5 @@
+configuration {
+    modi: "window,drun,keys";
+    yoffset: -20;
+}
+@theme "Custom"

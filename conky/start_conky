@@ -1,0 +1,7 @@
+#!/bin/bash
+
+conky -c ./conky_hotkeys &&
+conky -c ./conky_system &&
+conky -c ./conky_calendar &&
+
+exit 0
