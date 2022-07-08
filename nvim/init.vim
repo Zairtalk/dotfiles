@@ -72,6 +72,7 @@ Plug 'michaeljsmith/vim-indent-object' "# indent object
 Plug 'simeji/winresizer' "# easy window resizing
 Plug 'simnalamburt/vim-mundo' "# undo tree
 Plug 'easymotion/vim-easymotion' "# easy motion
+Plug 'dense-analysis/ale' "# code linting
 
 call plug#end()
 
