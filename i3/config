@@ -22,8 +22,8 @@ font xft:URWGothic-Book 11
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec kitty
-bindsym --release $mod+Shift+Return exec kitty --class float
+bindsym $mod+Return exec alacritty
+bindsym --release $mod+Shift+Return exec alacritty --class float
 
 # kill focused window
 bindsym $mod+q kill
@@ -43,7 +43,7 @@ bindsym $mod+Ctrl+c exec --no-startup-id xfce4-settings-manager
 ################################################################################################
 
 # exec --no-startup-id volumeicon
-#bindsym $mod+Ctrl+m exec kitty --class float -e 'pulsemixer'
+#bindsym $mod+Ctrl+m exec alacritty --class float -e 'pulsemixer'
 #exec --no-startup-id pulseaudio --daemonize
 bindsym $mod+Ctrl+m exec pavucontrol
 bindsym XF86AudioMute exec pulseaudio-control togmute
@@ -60,12 +60,12 @@ bindsym XF86AudioRaiseVolume exec pulseaudio-control up
 bindsym XF86AudioMicMute exec "amixer sset Capture toggle"
 
 # Start Applications
-bindsym $mod+Ctrl+b exec kitty --class float -e 'bmenu'
+bindsym $mod+Ctrl+b exec alacritty --class float -e 'bmenu'
 bindsym $mod+F2 exec brave
 bindsym $mod+F3 exec nautilus
 # bindsym $mod+F3 exec ranger
 # bindsym $mod+Shift+F3 exec pcmanfm_pkexec
-bindsym $mod+F5 exec kitty --class float -e 'mocp'
+bindsym $mod+F5 exec alacritty --class float -e 'mocp'
 bindsym $mod+t exec --no-startup-id pkill picom
 bindsym $mod+Ctrl+t exec --no-startup-id picom -b
 bindsym $mod+Shift+d --release exec "killall dunst; exec notify-send 'restart dunst'"

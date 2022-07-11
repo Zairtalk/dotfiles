@@ -72,7 +72,7 @@ Plug 'michaeljsmith/vim-indent-object' "# indent object
 Plug 'simeji/winresizer' "# easy window resizing
 Plug 'simnalamburt/vim-mundo' "# undo tree
 Plug 'easymotion/vim-easymotion' "# easy motion
-Plug 'dense-analysis/ale' "# code linting
+" Plug 'dense-analysis/ale' "# code linting
 
 call plug#end()
 
@@ -110,7 +110,12 @@ require('lualine').setup ()
 require('lualine').setup {
     options = { theme  =  'nightfly' },
 }
-require("bufferline").setup{}
+require("bufferline").setup{
+    options = {
+        numbers = "buffer_id",
+        diagnostics = "nvim_lsp"
+        },
+}
 
 require("indent_blankline").setup {
 
@@ -162,12 +167,15 @@ nnoremap <Left> <C-w>h
 nnoremap <Down> <C-w>j
 nnoremap <Up> <C-w>k
 nnoremap <Right> <C-w>l
-nnoremap <leader>v <cmd>CHADopen<cr>
+" nnoremap <leader>v <cmd>CHADopen<cr>
 nnoremap <silent> <Tab> :BufferLineCycleNext<CR>
 nnoremap <silent> <S-Tab> :BufferLineCyclePrev<CR>
 nnoremap <leader>d :DelimitMateSwitch<cr>
+nnoremap <leader>f :FZF<cr>
 nnoremap <leader>u :MundoToggle<cr>
 map <esc> :noh<cr>
+
+tnoremap <Esc> <C-\><C-n>
 
 " let g:coq_settings = { 'auto_start': 'shut-up' }
 let g:UltiSnipsExpandTrigger="<tab>"
