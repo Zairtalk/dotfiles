@@ -26,7 +26,7 @@ set completeopt=noinsert,menuone,noselect
 set termguicolors
 set undofile
 set undodir=~/.config/nvim/undo
-set undolevels=10000
+set undolevels=1000
 
 "#=================================================#
 
@@ -51,7 +51,8 @@ Plug 'jeffkreeftmeijer/vim-numbertoggle' "# toggle line numbers in normal mode
 " Plug 'ncm2/ncm2-jedi' "# 
 Plug 'tpope/vim-commentary' "# add comments with gc
 Plug 'vim-scripts/ReplaceWithRegister' "# replace with gr
-Plug 'ap/vim-css-color' "# add colors to hex codes
+" Plug 'ap/vim-css-color' "# add colors to hex codes
+Plug 'chrisbra/Colorizer' "# colors alternative
 Plug 'folke/which-key.nvim' "# key-hints
 Plug 'tpope/vim-fugitive' "# git plugin :help fugutive
 Plug 'lewis6991/gitsigns.nvim' "# git highlights
@@ -67,15 +68,44 @@ Plug 'akinsho/bufferline.nvim', { 'tag': 'v2.*' } "# buffer tabs at the top
 Plug 'lukas-reineke/indent-blankline.nvim' "# indent lines
 " Plug 'Pocco81/AutoSave.nvim' "# autosave
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} "# programming highlights
-Plug 'gelguy/wilder.nvim', { 'do': 'UpdateRemotePlugins' } "# commands autocomplete
 Plug 'michaeljsmith/vim-indent-object' "# indent object
 Plug 'simeji/winresizer' "# easy window resizing
 Plug 'simnalamburt/vim-mundo' "# undo tree
 Plug 'easymotion/vim-easymotion' "# easy motion
 " Plug 'dense-analysis/ale' "# code linting
+Plug 'williamboman/mason.nvim' "# LSP installer
+Plug 'mfussenegger/nvim-dap' "# Debugger
+Plug 'https://git.sr.ht/~whynothugo/lsp_lines.nvim' "# Fancy lines
+Plug 'williamboman/mason-lspconfig.nvim' "# Mason addition
+Plug 'rust-lang/rust.vim' "# Rust configurations
+Plug 'ervandew/supertab' "# Supertab 
+Plug 'nvim-lua/plenary.nvim'
+Plug 'simrat39/rust-tools.nvim' "# Lsp rust extender
+Plug 'mfussenegger/nvim-lint' "# Linting
+
+Plug 'gelguy/wilder.nvim', { 'do': 'UpdateRemotePlugins' } "# commands autocomplete
+
+Plug 'roxma/nvim-yarp'
+Plug 'roxma/vim-hug-neovim-rpc'
+Plug 'kdheepak/lazygit.nvim'
+  
 
 call plug#end()
 
+call wilder#setup({
+      \ 'modes': [':', '/', '?'],
+      \ 'enable_cmdline_enter': 0,
+      \ })
+
+call wilder#set_option('renderer', wilder#popupmenu_renderer({
+      \ 'highlighter': wilder#basic_highlighter(),
+      \ 'left': [
+      \   ' ', wilder#popupmenu_devicons(),
+      \ ],
+      \ 'right': [
+      \   ' ', wilder#popupmenu_scrollbar(),
+      \ ],
+      \ }))
 "#=================================================#
 
 "# Initialize lua plugins
@@ -86,11 +116,19 @@ source ~/.config/nvim/which-key.vim
 
 lua << EOF
 
+vim.api.nvim_create_autocmd({ "BufWritePost" }, {
+  callback = function()
+    require("lint").try_lint()
+  end,
+})
+
 local lspconfig = require('lspconfig')
 
-vim.g.coq_settings = { auto_start = 'shut-up' }
+vim.g.coq_settings = { 
+    auto_start = 'shut-up',
+}
 
-local servers = {'pyright'}
+local servers = {'pyright','rust_analyzer'}
 
 for _, lsp in ipairs(servers) do
   lspconfig[lsp].setup(require('coq').lsp_ensure_capabilities({
@@ -99,7 +137,21 @@ end
 
 lspconfig.pyright.setup{}
 
+require("mason-lspconfig").setup({
+    ensure_installed = { "sumneko_lua", "rust_analyzer" },
+    automatic_installation = true,
+    })
+
 require('gitsigns').setup()
+
+require('mason').setup()
+
+require('mason-lspconfig').setup()
+
+require('rust-tools').setup({})
+
+require('lsp_lines').setup()
+
 
 require('hlslens').setup({
     calm_down = true,
@@ -135,6 +187,16 @@ vim.opt.list = true
 vim.opt.listchars:append("space:•")
 vim.opt.listchars:append("eol:↴")
 
+vim.diagnostic.config({
+    virtual_text = false,
+})
+
+require('rust-tools').setup{
+    inlay_hints = {
+        auto = true,
+        }
+}
+
 -- vim.g.autosave_state = true
 
 EOF
@@ -157,8 +219,13 @@ augroup END
 
 let g:mapleader = "\<Space>"
 let g:maplocalleader = ','
-
 let g:winresizer_start_key = "<leader>w"
+
+lua << EOF
+
+    vim.keymap.set("","<Leader>l",require("lsp_lines").toggle,{desc = "Toggle lsp_lines" })
+
+EOF
 
 " nnoremap <silent> <leader>      :<c-u>WhichKey '<Space>'<CR>
 " nnoremap <silent> <localleader> :<c-u>WhichKey  ','<CR>
@@ -173,6 +240,7 @@ nnoremap <silent> <S-Tab> :BufferLineCyclePrev<CR>
 nnoremap <leader>d :DelimitMateSwitch<cr>
 nnoremap <leader>f :FZF<cr>
 nnoremap <leader>u :MundoToggle<cr>
+nnoremap <silent> <leader>gg :LazyGit<CR>
 map <esc> :noh<cr>
 
 tnoremap <Esc> <C-\><C-n>
@@ -183,3 +251,13 @@ let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
 runtime macros/sandwich/keymap/surround.vim
+
+" # Neovide config
+if exists("g:neovide")
+    let g:neovide_refresh_rate_idle=5
+    let g:neovide_cursor_animation_length=0.05
+    let g:neovide_cursor_antialiasing=v:true
+    let g:neovide_cursor_trail_length=0.1
+    let g:neovide_cursor_vfx_mode = "railgun"
+    set guifont=Fire\Code
+ endif

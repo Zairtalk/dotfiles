@@ -1,0 +1,636 @@
+<map version="1.0.1">
+<!-- To view this file, download free mind mapping software FreeMind from http://freemind.sourceforge.net -->
+<node CREATED="1627478533588" ID="ID_259281549" LINK="https://kubernetes.io/docs/tutorials/kubernetes-basics/" MODIFIED="1627665679139" TEXT="Kubernetes Basics">
+<node CREATED="1627478738298" ID="ID_1196751082" MODIFIED="1627478750856" POSITION="right" TEXT="Introduction">
+<icon BUILTIN="full-0"/>
+<node CREATED="1627478741666" ID="ID_1634755366" MODIFIED="1660307207273" TEXT="What can Kubernetes do for you?">
+<node CREATED="1627478781674" ID="ID_1260134887" MODIFIED="1627478790678" TEXT="Users expect applications available 24/7"/>
+<node CREATED="1627478791618" ID="ID_1396931712" MODIFIED="1627478800950" TEXT="Developers expect deploy new versions several times a day"/>
+<node CREATED="1627478805130" ID="ID_3368216" MODIFIED="1627478819558" TEXT="No downtime for application&apos;s">
+<node CREATED="1627478819802" ID="ID_667303776" MODIFIED="1627478820910" TEXT="release"/>
+<node CREATED="1627478821274" ID="ID_1329399078" MODIFIED="1627478826214" TEXT="update"/>
+</node>
+<node CREATED="1627478871459" ID="ID_790371417" MODIFIED="1627478877758" TEXT="Container orchestration"/>
+</node>
+</node>
+<node CREATED="1627478883434" ID="ID_1125671235" LINK="https://kubernetes.io/docs/tutorials/kubernetes-basics/create-cluster/" MODIFIED="1627665685484" POSITION="right" TEXT="Create a Kubernetes cluster">
+<icon BUILTIN="full-1"/>
+<node CREATED="1627478903498" FOLDED="true" ID="ID_243098407" MODIFIED="1627478906822" TEXT="Kubernetes Clusters">
+<node CREATED="1627478909570" ID="ID_517321007" MODIFIED="1627478912702" TEXT="Computer connected"/>
+<node CREATED="1627478913025" ID="ID_813430779" MODIFIED="1627478916486" TEXT="... to work as single unit"/>
+</node>
+<node CREATED="1627478927667" ID="ID_441682295" MODIFIED="1627478953603" TEXT="Deploy containerized application to a cluster"/>
+<node CREATED="1627478954810" ID="ID_1318173202" MODIFIED="1627478965518" TEXT="... without tying them to individual machines"/>
+<node CREATED="1627478981962" ID="ID_1086494669" MODIFIED="1627478984670" TEXT="Decoupled from the host"/>
+<node CREATED="1627479001578" FOLDED="true" ID="ID_64912175" MODIFIED="1627479010750" TEXT="Kubernetes automates cluster">
+<node CREATED="1627479010978" ID="ID_696202653" MODIFIED="1627479012518" TEXT="distribution"/>
+<node CREATED="1627479012842" ID="ID_1118149862" MODIFIED="1627479014318" TEXT="scheduling"/>
+</node>
+<node CREATED="1627479020714" FOLDED="true" ID="ID_154575289" MODIFIED="1627479023550" TEXT="Two types of resources">
+<node CREATED="1627479023819" ID="ID_147383979" MODIFIED="1627479026798" TEXT="Control Plane">
+<node CREATED="1627479027042" ID="ID_991843431" MODIFIED="1627479029822" TEXT="Coordinate the cluster"/>
+<node CREATED="1627479065754" ID="ID_1671186676" MODIFIED="1627479094207" TEXT="Example">
+<icon BUILTIN="wizard"/>
+<node CREATED="1627479071762" ID="ID_1476303843" MODIFIED="1627479075870" TEXT="Scheduling applications"/>
+<node CREATED="1627479076219" ID="ID_795880224" MODIFIED="1627479085093" TEXT="Maintaining applications&apos; desired state"/>
+<node CREATED="1627479085468" ID="ID_369569862" MODIFIED="1627479089246" TEXT="Scaling applications"/>
+<node CREATED="1627479089697" ID="ID_1337392690" MODIFIED="1627479092838" TEXT="Rolling out new updates"/>
+</node>
+</node>
+<node CREATED="1627479030818" ID="ID_500777061" MODIFIED="1627479031942" TEXT="Nodes">
+<node CREATED="1627479033034" ID="ID_1087066803" MODIFIED="1627479036918" TEXT="Workers that runs the applications"/>
+<node CREATED="1627479103954" ID="ID_250503688" MODIFIED="1627479107398" TEXT="VM or physical computer"/>
+<node CREATED="1627479112978" ID="ID_274257940" MODIFIED="1627479116717" TEXT="Each node as a kubelet">
+<node CREATED="1627479117466" ID="ID_1355443734" MODIFIED="1627479124006" TEXT="Agent for managing the node"/>
+<node CREATED="1627479124850" ID="ID_357546950" MODIFIED="1627479132182" TEXT="Communicate with control plane"/>
+</node>
+<node CREATED="1627479137410" ID="ID_489470656" MODIFIED="1627479147222" TEXT="Have tools for handling container operations">
+<node CREATED="1627479153258" ID="ID_1775134227" MODIFIED="1627479154006" TEXT="Docker"/>
+</node>
+<node CREATED="1627479158706" ID="ID_1323724810" MODIFIED="1627479166278" TEXT="Minimum 3 nodes for production"/>
+</node>
+</node>
+<node CREATED="1627479180082" FOLDED="true" ID="ID_927583921" MODIFIED="1627479186822" TEXT="Deploying application on Kubernetes">
+<node CREATED="1627479188250" ID="ID_592385628" MODIFIED="1627479195438" TEXT="Tell the control plane to start application containers"/>
+<node CREATED="1627479202737" ID="ID_1644378978" MODIFIED="1627479210998" TEXT="Control plane schedules conainters to run on cluster&apos;s node"/>
+<node CREATED="1627479213394" ID="ID_661924173" MODIFIED="1627479257942" TEXT="Node use Kubernetes API to communicate with control plane"/>
+<node CREATED="1627479244402" ID="ID_1257208847" MODIFIED="1627479253974" TEXT="End user can use Kubernetes API to interact with cluster"/>
+</node>
+<node CREATED="1627479270642" FOLDED="true" ID="ID_1010103976" MODIFIED="1627479272422" TEXT="Minikube">
+<node CREATED="1627479272625" ID="ID_1708376573" MODIFIED="1627479279982" TEXT="Lightweigh Kubernetes implementation"/>
+<node CREATED="1627479280370" ID="ID_1348250948" MODIFIED="1627479285774" TEXT="Creates a VM on locale machine"/>
+<node CREATED="1627479307059" ID="ID_294998821" MODIFIED="1627479315374" TEXT="Deploy a cluster with one node"/>
+<node CREATED="1627479355682" ID="ID_132383975" MODIFIED="1627479362238" TEXT="Provide basic bootstrapping operations">
+<node CREATED="1627479363050" ID="ID_1783226330" MODIFIED="1627479363992" TEXT="start"/>
+<node CREATED="1627479364322" ID="ID_1316220574" MODIFIED="1627479364950" TEXT="stop"/>
+<node CREATED="1627479365490" ID="ID_1137764827" MODIFIED="1627479366910" TEXT="status"/>
+<node CREATED="1627479367267" ID="ID_1884905136" MODIFIED="1627479368125" TEXT="delete"/>
+</node>
+</node>
+<node CREATED="1627479399306" ID="ID_352575796" MODIFIED="1660307221338" TEXT="Interactive tutorial">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<icon BUILTIN="broken-line"/>
+<node CREATED="1627479410346" ID="ID_419472726" MODIFIED="1627479415340" TEXT="minikube version">
+<font ITALIC="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1627479417882" ID="ID_1380560841" MODIFIED="1627479422954" TEXT="minikube start">
+<font ITALIC="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1627479472186" ID="ID_388811568" MODIFIED="1627479474850" TEXT="kubectl version">
+<font ITALIC="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1627479476370" ID="ID_407780286" MODIFIED="1627479482243" TEXT="kubectl cluster-info">
+<font ITALIC="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1627479515010" ID="ID_379502027" MODIFIED="1627479518666" TEXT="kubectl get nodes">
+<font ITALIC="true" NAME="SansSerif" SIZE="12"/>
+</node>
+</node>
+</node>
+<node CREATED="1627479547866" ID="ID_249344143" LINK="https://kubernetes.io/docs/tutorials/kubernetes-basics/deploy-app/" MODIFIED="1627665694300" POSITION="right" TEXT=" Deploy an app">
+<icon BUILTIN="full-2"/>
+<node CREATED="1627479560386" FOLDED="true" ID="ID_599791609" MODIFIED="1627479563710" TEXT="Kubernetes Deployments">
+<node CREATED="1627479570098" ID="ID_1666732059" MODIFIED="1627479574054" TEXT="When you have running cluster"/>
+<node CREATED="1627479574394" ID="ID_252957521" MODIFIED="1627479580902" TEXT="... can deploy containerized applications"/>
+<node CREATED="1627479581298" ID="ID_678520089" MODIFIED="1627479583454" TEXT="... on top of it"/>
+<node CREATED="1627479586338" ID="ID_489687615" MODIFIED="1627479597326" TEXT="Need to create Kubernetes Deployment configuration">
+<node CREATED="1627479600914" ID="ID_1965468249" MODIFIED="1627479609414" TEXT="How to create and update"/>
+<node CREATED="1627479609763" ID="ID_207316188" MODIFIED="1627479622830" TEXT="... instances of application"/>
+</node>
+<node CREATED="1627479639130" ID="ID_1589156535" MODIFIED="1627479652614" TEXT="The, Kubernetes control plane schedules applications instances"/>
+<node CREATED="1627479653699" ID="ID_272966594" MODIFIED="1627479660109" TEXT="... included in that deployment"/>
+<node CREATED="1627479660457" ID="ID_1879974210" MODIFIED="1627479666310" TEXT="... to run on individual Nodes in the cluster"/>
+</node>
+<node CREATED="1627479673498" FOLDED="true" ID="ID_255357463" MODIFIED="1627479683222" TEXT="Kubernetes Deployment Controller">
+<node CREATED="1627479683746" ID="ID_226872714" MODIFIED="1627479691744" TEXT="When application instances created"/>
+<node CREATED="1627479692130" ID="ID_1433894881" MODIFIED="1627479709518" TEXT="... controls monitors these instances"/>
+<node CREATED="1627479718786" ID="ID_249409639" MODIFIED="1627479730030" TEXT="If node hosting instance goes down or deleted"/>
+<node CREATED="1627479731019" ID="ID_193704783" MODIFIED="1627479741718" TEXT="... deploument controller replaces the instance"/>
+<node CREATED="1627479742106" ID="ID_776595614" MODIFIED="1627479745894" TEXT="... with an instance of another node">
+<node CREATED="1627479749554" ID="ID_1045536300" MODIFIED="1627479755510" TEXT="Self healing mechanism"/>
+<node CREATED="1627479757306" ID="ID_1446435656" MODIFIED="1627479760334" TEXT="... addessing">
+<node CREATED="1627479760522" ID="ID_1451204401" MODIFIED="1627479762309" TEXT="machine failure"/>
+<node CREATED="1627479762634" ID="ID_280074413" MODIFIED="1627479764574" TEXT="maintenance"/>
+</node>
+</node>
+</node>
+<node CREATED="1627479779914" FOLDED="true" ID="ID_1057753265" MODIFIED="1627479783942" TEXT="Pre-orchestration world">
+<node CREATED="1627479784154" ID="ID_122990206" MODIFIED="1627479789486" TEXT="Scripts used to start applications"/>
+<node CREATED="1627479790114" ID="ID_238331316" MODIFIED="1627479798934" TEXT="... but didn&apos;t allow to recover machines from failures"/>
+</node>
+<node CREATED="1627479840506" FOLDED="true" ID="ID_1787242686" MODIFIED="1627479854694" TEXT="Deploying your first app on kubernetes">
+<node CREATED="1627480081777" ID="ID_1726171431" MODIFIED="1627480084222" TEXT="kubectl">
+<node CREATED="1627480084410" ID="ID_1927639453" MODIFIED="1627480088639" TEXT="Use Kubernetes API"/>
+<node CREATED="1627480089058" ID="ID_336200323" MODIFIED="1627480092670" TEXT="... to interact with cluster"/>
+</node>
+<node CREATED="1627480100314" ID="ID_907357171" MODIFIED="1627480113086" TEXT="Creating deployment: specify">
+<node CREATED="1627480105138" ID="ID_280376651" MODIFIED="1627480115990" TEXT="Container image"/>
+<node CREATED="1627480116394" ID="ID_140088055" MODIFIED="1627480121118" TEXT="Number of replicas you want to run"/>
+</node>
+</node>
+<node CREATED="1627480159162" FOLDED="true" ID="ID_756388239" MODIFIED="1629789345899" TEXT="Interactive tutorial">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<icon BUILTIN="broken-line"/>
+<node CREATED="1627480165114" FOLDED="true" ID="ID_1601930823" LINK="https://kubernetes.io/docs/concepts/workloads/pods/" MODIFIED="1627480209006" TEXT="Pod">
+<node CREATED="1627480166250" ID="ID_1895486971" MODIFIED="1627480176142" TEXT="Basic execution unit of Kubernetes application"/>
+<node CREATED="1627480180858" ID="ID_808375057" MODIFIED="1627480190910" TEXT="Represents part of workload running on cluster"/>
+</node>
+<node CREATED="1627480246418" FOLDED="true" ID="ID_1382492858" MODIFIED="1627480248230" TEXT="Format">
+<node CREATED="1627480248514" ID="ID_1292462867" MODIFIED="1627480257691" TEXT="kubectl &lt;action&gt; &lt;resource&gt;">
+<font ITALIC="true" NAME="SansSerif" SIZE="12"/>
+</node>
+</node>
+<node CREATED="1627480299554" FOLDED="true" ID="ID_901220812" MODIFIED="1627480302622" TEXT="Create deployment">
+<node CREATED="1627480302890" ID="ID_348798419" MODIFIED="1627480358475" TEXT="kubectl create deployment kubernetes-bootcamp --image=gcr.io/google-samples/kubernetes-bootcamp:v1">
+<font ITALIC="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1627480373562" ID="ID_417672079" MODIFIED="1627480375702" TEXT="It">
+<node CREATED="1627480375890" ID="ID_428247001" MODIFIED="1627480401727" TEXT="Searched for a suitable node">
+<icon BUILTIN="full-1"/>
+<node CREATED="1627480394810" ID="ID_64411328" MODIFIED="1627480398646" TEXT="where an insance of app"/>
+<node CREATED="1627480398946" ID="ID_1186151856" MODIFIED="1627480400798" TEXT="could be run"/>
+</node>
+<node CREATED="1627480381146" ID="ID_843555262" MODIFIED="1627480413543" TEXT="Scheduled application to run on that node">
+<icon BUILTIN="full-2"/>
+</node>
+<node CREATED="1627480414906" ID="ID_1500131114" MODIFIED="1627480428103" TEXT="Configured the cluster to reschedule instance on new node">
+<icon BUILTIN="full-3"/>
+</node>
+</node>
+<node CREATED="1627480436818" ID="ID_1312413088" MODIFIED="1627480442490" TEXT="kubectl get deployments">
+<font ITALIC="true" NAME="SansSerif" SIZE="12"/>
+</node>
+</node>
+<node CREATED="1627480465058" FOLDED="true" ID="ID_1294429312" MODIFIED="1627480475798" TEXT="Pods running on private and isolated network">
+<node CREATED="1627480480258" ID="ID_1636165709" MODIFIED="1627480491638" TEXT="Visible by others by defaults">
+<node CREATED="1627480491818" ID="ID_1204152973" MODIFIED="1627480494030" TEXT="services"/>
+<node CREATED="1627480494506" ID="ID_1397354726" MODIFIED="1627480495086" TEXT="pods"/>
+</node>
+<node CREATED="1627480504786" ID="ID_313372216" MODIFIED="1627480511094" TEXT="... but not outside the network"/>
+<node CREATED="1627480521178" ID="ID_372890455" MODIFIED="1627480541063" TEXT="kubectl interact through API endpoint"/>
+</node>
+<node CREATED="1627480555203" FOLDED="true" ID="ID_860587571" MODIFIED="1627480561942" TEXT=" Creating a proxy to forward communication">
+<node CREATED="1627480562234" ID="ID_1533196672" MODIFIED="1627480568846" TEXT="In the cluster-wide private network"/>
+<node CREATED="1627480570586" ID="ID_261182873" MODIFIED="1627480625347" TEXT="kubectl proxy">
+<font ITALIC="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1627480667050" ID="ID_1799663715" MODIFIED="1627480674358" TEXT="... can now access proxy endpoint">
+<node CREATED="1627480674618" ID="ID_1205580877" MODIFIED="1627480679731" TEXT="curl https://localhost:8001">
+<font ITALIC="true" NAME="SansSerif" SIZE="12"/>
+</node>
+</node>
+<node CREATED="1627480705218" ID="ID_134210675" MODIFIED="1627480712526" TEXT="API server automatically creates endpoint for each pod">
+<node CREATED="1627480715825" ID="ID_8905313" MODIFIED="1627480718486" TEXT="Based on pod&apos;s name"/>
+<node CREATED="1627480834866" ID="ID_485782983" MODIFIED="1627480850211" TEXT="export POD_NAME=$(kubectl get pods -o go-template --template &apos;{{range .items}}{{.metada{end}}&apos;)}{{&quot;\n&quot;}}{{end}}&apos;)">
+<font ITALIC="true" NAME="SansSerif" SIZE="12"/>
+</node>
+</node>
+</node>
+<node CREATED="1627480869986" ID="ID_190543774" MODIFIED="1627480875855" TEXT="Service required to access pod without proxy"/>
+</node>
+</node>
+<node CREATED="1627480904730" ID="ID_633489096" LINK="https://kubernetes.io/docs/tutorials/kubernetes-basics/explore/" MODIFIED="1627665701644" POSITION="right" TEXT=" Explore your app">
+<icon BUILTIN="full-3"/>
+<node CREATED="1627480913042" FOLDED="true" ID="ID_1602938473" MODIFIED="1627480914174" TEXT="Kubernetes Pods">
+<node CREATED="1627480923404" ID="ID_824817481" MODIFIED="1627480930662" TEXT="Kubernetes abstraction"/>
+<node CREATED="1627480947066" ID="ID_1722646200" MODIFIED="1627480953046" TEXT="Represent">
+<node CREATED="1627480930993" ID="ID_349709196" MODIFIED="1627480937934" TEXT="One or more application containers">
+<node CREATED="1627480938202" ID="ID_1378194202" MODIFIED="1627480941390" TEXT="Docker or others"/>
+</node>
+<node CREATED="1627480955730" ID="ID_565686928" MODIFIED="1627480962006" TEXT="Some shared resources for containers">
+<node CREATED="1627480972466" ID="ID_1924222228" MODIFIED="1627480977966" TEXT="Shared storage (Volumes)"/>
+<node CREATED="1627480979138" ID="ID_1994114728" MODIFIED="1627480990494" TEXT="Networking (unique cluster IP address)"/>
+<node CREATED="1627480992346" ID="ID_106675701" MODIFIED="1627480998350" TEXT="Information about how to run each container">
+<node CREATED="1627481000594" ID="ID_1155965979" MODIFIED="1627481004494" TEXT="Container image version"/>
+<node CREATED="1627481005315" ID="ID_206928825" MODIFIED="1627481009382" TEXT="Specific ports to use"/>
+</node>
+</node>
+</node>
+<node CREATED="1627481068410" ID="ID_752482095" MODIFIED="1627481069270" TEXT="Models">
+<node CREATED="1627481069474" ID="ID_1908961712" MODIFIED="1627481078174" TEXT="Application-specific &quot;logical host&quot;"/>
+<node CREATED="1627481081459" ID="ID_359916249" MODIFIED="1627481088774" TEXT="Application containers relatively tightly coupled"/>
+</node>
+<node CREATED="1627481104186" ID="ID_1147153619" MODIFIED="1627481123662" TEXT="Containers in pod">
+<node CREATED="1627481124066" ID="ID_1392827169" MODIFIED="1627481125574" TEXT="share">
+<node CREATED="1627481107906" ID="ID_999720145" MODIFIED="1627481109573" TEXT="IP address"/>
+<node CREATED="1627481111386" ID="ID_19596605" MODIFIED="1627481113150" TEXT="port space"/>
+</node>
+<node CREATED="1627481128002" ID="ID_1619522273" MODIFIED="1627481130854" TEXT="are always">
+<node CREATED="1627481132490" ID="ID_780269747" MODIFIED="1627481135558" TEXT="co-located"/>
+<node CREATED="1627481135946" ID="ID_1260366418" MODIFIED="1627481138406" TEXT="co-scheduled"/>
+</node>
+<node CREATED="1627481141338" ID="ID_1134153458" MODIFIED="1627481148822" TEXT="Run in shared context on same Node"/>
+</node>
+<node CREATED="1627481153850" ID="ID_474013284" MODIFIED="1627481159999" TEXT="Atomic unit of Kubernetes platform">
+<node CREATED="1627481164395" ID="ID_1457861974" MODIFIED="1627481176126" TEXT="Creating a deployment"/>
+<node CREATED="1627481176539" ID="ID_282283070" MODIFIED="1627481209110" TEXT="... which creates pods"/>
+<node CREATED="1627481181899" ID="ID_1900453569" MODIFIED="1627481191582" TEXT="... with containers inside them"/>
+<node CREATED="1627481193186" ID="ID_1615795854" MODIFIED="1627481203070" TEXT="We don&apos;t create containers directly"/>
+</node>
+<node CREATED="1627481216114" ID="ID_324109722" MODIFIED="1627481221934" TEXT="Pod tied to Node where is it scheduled">
+<node CREATED="1627481227674" ID="ID_47361225" MODIFIED="1627481247334" TEXT="Remain there till">
+<node CREATED="1627481247586" ID="ID_1874393645" MODIFIED="1627481259318" TEXT="termination (depending on restart policy)"/>
+<node CREATED="1627481250090" ID="ID_536724521" MODIFIED="1627481251134" TEXT="deletion"/>
+</node>
+</node>
+<node CREATED="1627481265674" ID="ID_1179733814" MODIFIED="1627481267766" TEXT="If node failure">
+<node CREATED="1627481268122" ID="ID_921600386" MODIFIED="1627481272998" TEXT="Identical pods scheduled"/>
+<node CREATED="1627481273370" ID="ID_29793569" MODIFIED="1627481280558" TEXT="... on another available nodes in the cluster"/>
+</node>
+</node>
+<node CREATED="1627481293906" FOLDED="true" ID="ID_248126569" MODIFIED="1627481294678" TEXT="Nodes">
+<node CREATED="1627481296594" ID="ID_339035444" MODIFIED="1627481301822" TEXT="Pod always run on Node"/>
+<node CREATED="1627481305186" ID="ID_193481172" MODIFIED="1627481308438" TEXT="Worker machine">
+<node CREATED="1627481309266" ID="ID_1799533378" MODIFIED="1627481315470" TEXT="can be virtual or physical"/>
+<node CREATED="1627481317339" ID="ID_1668116968" MODIFIED="1627481320174" TEXT="... depending on cluster"/>
+</node>
+<node CREATED="1627481324050" ID="ID_578612819" MODIFIED="1627481330934" TEXT="Managed by control plane"/>
+<node CREATED="1627481331755" ID="ID_67850785" MODIFIED="1627481335967" TEXT="Can have multiple pods"/>
+<node CREATED="1627481341586" ID="ID_375013349" MODIFIED="1627481349022" TEXT="Control plane automatically handles">
+<node CREATED="1627481349202" ID="ID_697036584" MODIFIED="1627481360150" TEXT="scheduling the pods"/>
+<node CREATED="1627481360514" ID="ID_1361964786" MODIFIED="1627481365231" TEXT="... across the Nodes in the cluster"/>
+<node CREATED="1627481370258" ID="ID_1196704128" MODIFIED="1627481375934" TEXT="Take into account resources available"/>
+<node CREATED="1627481376257" ID="ID_1342227305" MODIFIED="1627481378118" TEXT="... on each node"/>
+</node>
+<node CREATED="1627481381946" ID="ID_1365951776" MODIFIED="1627481388966" TEXT="Every node run at least">
+<node CREATED="1627481390082" ID="ID_639844218" MODIFIED="1627481393702" TEXT="Kubelet">
+<node CREATED="1627481393954" ID="ID_542240942" MODIFIED="1627481404542" TEXT="Responsible for communication between">
+<node CREATED="1627481404698" ID="ID_1331942603" MODIFIED="1627481408494" TEXT="Control plane"/>
+<node CREATED="1627481408874" ID="ID_434487820" MODIFIED="1627481410830" TEXT="Node"/>
+</node>
+<node CREATED="1627481413202" ID="ID_25834165" MODIFIED="1627481419014" TEXT="Manage pods and containers running on machine"/>
+</node>
+<node CREATED="1627481420282" ID="ID_335397889" MODIFIED="1627481425030" TEXT="Container runtime (like Docker)">
+<node CREATED="1627481426034" ID="ID_992100503" MODIFIED="1627481431238" TEXT="Pulling container image from registry"/>
+<node CREATED="1627481431642" ID="ID_693870808" MODIFIED="1627481434686" TEXT="Unpacking the container"/>
+<node CREATED="1627481435026" ID="ID_801888506" MODIFIED="1627481437718" TEXT="Running the application"/>
+</node>
+</node>
+</node>
+<node CREATED="1627481452338" FOLDED="true" ID="ID_199627807" MODIFIED="1627481458510" TEXT="Troubleshooting with kubectl">
+<node CREATED="1627481549987" ID="ID_1804257982" MODIFIED="1627481554118" TEXT="Most common operations">
+<node CREATED="1627481554530" ID="ID_1537821858" MODIFIED="1627481556694" TEXT="List resources">
+<node CREATED="1627481556938" ID="ID_1684669554" MODIFIED="1627481574787" TEXT="kubectl get">
+<font ITALIC="true" NAME="SansSerif" SIZE="12"/>
+</node>
+</node>
+<node CREATED="1627481561410" ID="ID_807132783" MODIFIED="1627481567846" TEXT="Detailed info about resource">
+<node CREATED="1627481568378" ID="ID_1302394776" MODIFIED="1627481574362" TEXT="kubectl describe">
+<font ITALIC="true" NAME="SansSerif" SIZE="12"/>
+</node>
+</node>
+<node CREATED="1627481575922" ID="ID_677729219" MODIFIED="1627481581806" TEXT="Print logs from a container in pod">
+<node CREATED="1627481582146" ID="ID_1993356973" MODIFIED="1627481585667" TEXT="kubectl logs">
+<font ITALIC="true" NAME="SansSerif" SIZE="12"/>
+</node>
+</node>
+<node CREATED="1627481586834" ID="ID_1669772454" MODIFIED="1627481595766" TEXT="Execute a comand on a container in a pod">
+<node CREATED="1627481596267" ID="ID_1602242817" MODIFIED="1627481599547" TEXT="kubectl exec">
+<font ITALIC="true" NAME="SansSerif" SIZE="12"/>
+</node>
+</node>
+</node>
+</node>
+<node CREATED="1627481618850" FOLDED="true" ID="ID_1434733454" MODIFIED="1629789342586" TEXT="Interactive tutorial">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<icon BUILTIN="broken-line"/>
+<node CREATED="1627481869898" ID="ID_601038383" MODIFIED="1627481893851" TEXT="kubectl get pods">
+<font ITALIC="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1627481872946" ID="ID_732153734" MODIFIED="1627481894323" TEXT="kubectl describe pods">
+<font ITALIC="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1627481879290" ID="ID_1185229467" MODIFIED="1627481881486" TEXT="... can be used with">
+<node CREATED="1627481881682" ID="ID_1146852191" MODIFIED="1627481882342" TEXT="nodes"/>
+<node CREATED="1627481882658" ID="ID_1308946165" MODIFIED="1627481884270" TEXT="deployments"/>
+<node CREATED="1627481884610" ID="ID_657692068" MODIFIED="1627481890590" TEXT="pods"/>
+</node>
+<node CREATED="1627482043682" ID="ID_968533605" MODIFIED="1627482051539" TEXT="kubectl logs $POD_NAME">
+<font ITALIC="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1627489465034" ID="ID_1483839023" MODIFIED="1627489478691" TEXT="kubectl exec -ti $POD_NAME -- bash">
+<font ITALIC="true" NAME="SansSerif" SIZE="12"/>
+</node>
+</node>
+</node>
+<node CREATED="1627489543635" ID="ID_1843558822" LINK="https://kubernetes.io/docs/tutorials/kubernetes-basics/expose/" MODIFIED="1627665716110" POSITION="right" TEXT=" Using a Service to Expose Your App">
+<icon BUILTIN="full-4"/>
+<node CREATED="1627546927815" FOLDED="true" ID="ID_115180" MODIFIED="1627546929844" TEXT="Problem">
+<node CREATED="1627546745239" ID="ID_1749424841" MODIFIED="1627546750532" TEXT="Pods have a lifecycle"/>
+<node CREATED="1627546753608" ID="ID_268855873" MODIFIED="1627546762220" TEXT="When worker node dies"/>
+<node CREATED="1627546762623" ID="ID_1836335119" MODIFIED="1627546770883" TEXT="... pods running on it die also"/>
+<node CREATED="1627546874440" ID="ID_219674522" MODIFIED="1627546894227" TEXT="ReplicaSet can bring back cluster to desired states">
+<node CREATED="1627546901184" ID="ID_1997215230" MODIFIED="1627546904155" TEXT="Creationg of new pods"/>
+<node CREATED="1627546904471" ID="ID_1940502443" MODIFIED="1627546907635" TEXT="... to keep app running"/>
+</node>
+<node CREATED="1627546930031" ID="ID_191624044" MODIFIED="1627546934027" TEXT="Pods have IP addresses"/>
+<node CREATED="1627546934391" ID="ID_1991012097" MODIFIED="1627546949539" TEXT="... and new ones are given when they&apos;re recreated"/>
+<node CREATED="1627546949944" ID="ID_1812547382" MODIFIED="1627546958156" TEXT="How application can use these IP addresses?"/>
+</node>
+<node CREATED="1627546960863" FOLDED="true" ID="ID_1302435789" MODIFIED="1627666147452" TEXT="Overview of Services">
+<node CREATED="1627546987603" ID="ID_1582053089" MODIFIED="1627546990075" TEXT="Abstraction"/>
+<node CREATED="1627546990351" ID="ID_24320324" MODIFIED="1627546995939" TEXT="Logical set of">
+<node CREATED="1627546996415" ID="ID_302501022" MODIFIED="1627546997011" TEXT="pods"/>
+<node CREATED="1627546997328" ID="ID_609979886" MODIFIED="1627547003260" TEXT="policies to access them"/>
+</node>
+<node CREATED="1627547008439" ID="ID_927583827" MODIFIED="1627547013683" TEXT="Loose coupling between dependant pods"/>
+<node CREATED="1627547428615" ID="ID_607800702" MODIFIED="1627547433395" TEXT="Defined using">
+<node CREATED="1627547433560" ID="ID_91730568" MODIFIED="1627547437564" TEXT="YAML (preferred)"/>
+<node CREATED="1627547437943" ID="ID_1508840834" MODIFIED="1627547438819" TEXT="JSON"/>
+</node>
+<node CREATED="1627547444023" ID="ID_834314582" MODIFIED="1627547450755" TEXT="... like all Kubernetes objects"/>
+<node CREATED="1627547457919" ID="ID_1950268330" MODIFIED="1627547467459" TEXT="Set of pods targeted determined by a labelSelector"/>
+<node CREATED="1627547474856" ID="ID_1348105233" MODIFIED="1627547478283" TEXT="IP address">
+<node CREATED="1627547478519" ID="ID_1029377648" MODIFIED="1627547482939" TEXT="Unique for each Pod"/>
+<node CREATED="1627547483327" ID="ID_433785011" MODIFIED="1627547494491" TEXT="Not exposed outside the cluster"/>
+<node CREATED="1627547498255" ID="ID_708549420" MODIFIED="1627547500611" TEXT="... without a service"/>
+</node>
+<node CREATED="1627547509928" ID="ID_102588101" LINK="https://kubernetes.io/docs/concepts/services-networking/connect-applications-service/" MODIFIED="1627547978899" TEXT="Allow applications to receive traffic">
+<node CREATED="1627547535207" ID="ID_9024756" MODIFIED="1627547540179" TEXT="Exposed depending on type"/>
+<node CREATED="1627547540530" ID="ID_711172048" LINK="https://kubernetes.io/docs/tutorials/services/source-ip/" MODIFIED="1627547970795" TEXT="Type available">
+<node CREATED="1627547547951" ID="ID_1542049242" MODIFIED="1627547552908" TEXT="ClusterIP (default)">
+<node CREATED="1627547576967" ID="ID_1262567057" MODIFIED="1627547584659" TEXT="Expose service on internal IP in cluster"/>
+<node CREATED="1627547585415" ID="ID_489213884" MODIFIED="1627547592908" TEXT="Service only reachable inside cluster"/>
+</node>
+<node CREATED="1627547553439" ID="ID_1598746151" MODIFIED="1627547556260" TEXT="NodePort">
+<node CREATED="1627547595407" ID="ID_1923285620" MODIFIED="1627547608204" TEXT="Expose service on same port of each selected Node"/>
+<node CREATED="1627547608521" ID="ID_1011828561" MODIFIED="1627547610603" TEXT="Use NAT"/>
+<node CREATED="1627547622936" ID="ID_124962320" MODIFIED="1627547632499" TEXT="Make service accessible outside cluster">
+<node CREATED="1627547632719" ID="ID_481439705" MODIFIED="1627547639834" TEXT="&lt;NodeIP&gt;:&lt;NodePort&gt;">
+<font ITALIC="true" NAME="SansSerif" SIZE="12"/>
+</node>
+</node>
+</node>
+<node CREATED="1627547556607" ID="ID_1068746468" MODIFIED="1627547560291" TEXT="LoadBalancer">
+<node CREATED="1627547707127" ID="ID_1340180390" MODIFIED="1627547716611" TEXT="Create external load balancer in current cloud">
+<node CREATED="1627547721135" ID="ID_1362080020" MODIFIED="1627547723987" TEXT="if supported"/>
+</node>
+<node CREATED="1627547725736" ID="ID_82133875" MODIFIED="1627547734187" TEXT="Assign a fixed and external IP to service"/>
+<node CREATED="1627547735535" ID="ID_1305526680" MODIFIED="1627547738939" TEXT="Supertset of NodePort"/>
+</node>
+<node CREATED="1627547560847" ID="ID_528679670" MODIFIED="1627547564275" TEXT="ExternalName">
+<node CREATED="1627547917703" ID="ID_202474057" MODIFIED="1627547925348" TEXT="Map service to contents of externalName field"/>
+<node CREATED="1627547938008" ID="ID_1391994965" MODIFIED="1627547944579" TEXT="Return a CNAME record with its value"/>
+<node CREATED="1627547947087" ID="ID_1392895412" MODIFIED="1627547952548" TEXT="No proxying set up"/>
+<node CREATED="1627547927487" ID="ID_598807524" MODIFIED="1627547928660" TEXT="Example">
+<node CREATED="1627547928879" ID="ID_733495995" MODIFIED="1627547934692" TEXT="foo.bar.example.com"/>
+</node>
+</node>
+</node>
+<node CREATED="1627665743728" ID="ID_1314662059" MODIFIED="1627665749716" TEXT="Service can be created without selector">
+<node CREATED="1627665749880" ID="ID_1078120149" MODIFIED="1627665753604" TEXT="Don&apos;t create Endpoint object"/>
+<node CREATED="1627665757464" ID="ID_1217612594" MODIFIED="1627665771220" TEXT="Allow user to map Service to specific endpoints"/>
+<node CREATED="1627665781344" ID="ID_1199684619" MODIFIED="1627665787987" TEXT="Type ExternalName doesn&apos;t use selector"/>
+</node>
+</node>
+</node>
+<node CREATED="1627665806336" FOLDED="true" ID="ID_1238005529" MODIFIED="1627665810659" TEXT="Services and Labels">
+<node CREATED="1627665824000" ID="ID_447764471" MODIFIED="1627665833420" TEXT="Service routes traffic across set of Pods"/>
+<node CREATED="1627665837880" ID="ID_1506161749" MODIFIED="1627665847156" TEXT="Handle">
+<node CREATED="1627665847407" ID="ID_346518943" MODIFIED="1627665848867" TEXT="discovery"/>
+<node CREATED="1627665849160" ID="ID_1365758727" MODIFIED="1627665850388" TEXT="routing"/>
+<node CREATED="1627665850768" ID="ID_1240180101" MODIFIED="1627665856795" TEXT="... among independent pods">
+<node CREATED="1627665860751" ID="ID_329979536" MODIFIED="1627665867493" TEXT="Example">
+<icon BUILTIN="wizard"/>
+<node CREATED="1627665861887" ID="ID_1695658722" MODIFIED="1627665863371" TEXT="Front end"/>
+<node CREATED="1627665863680" ID="ID_788032626" MODIFIED="1627665866188" TEXT="Back end"/>
+</node>
+</node>
+</node>
+<node CREATED="1627665876383" ID="ID_749137306" MODIFIED="1627665883161" TEXT="Service match sets of pods using">
+<node CREATED="1627665892287" ID="ID_641717869" MODIFIED="1627665895787" TEXT="Grouping primitives">
+<node CREATED="1627665883344" ID="ID_1374355979" MODIFIED="1627665884315" TEXT="labels"/>
+<node CREATED="1627665884647" ID="ID_887576322" MODIFIED="1627665889227" TEXT="selectors"/>
+</node>
+<node CREATED="1627665901079" ID="ID_337306706" MODIFIED="1627665906195" TEXT="... allow logical operations on objects"/>
+<node CREATED="1627665909760" ID="ID_1899665534" MODIFIED="1627665912083" TEXT="... can be used to">
+<node CREATED="1627665913463" ID="ID_1433197070" MODIFIED="1627665919804" TEXT="Designate objects for development"/>
+<node CREATED="1627665920584" ID="ID_326208713" MODIFIED="1627665923395" TEXT="Embed version tags"/>
+<node CREATED="1627665924080" ID="ID_859347694" MODIFIED="1627666074788" TEXT="Classify an object using tags"/>
+</node>
+<node CREATED="1627666087688" ID="ID_397503323" MODIFIED="1627666093211" TEXT="... can be modified at any time"/>
+</node>
+</node>
+<node CREATED="1627666153303" FOLDED="true" ID="ID_1368534527" MODIFIED="1629789352883" TEXT="Interactive tutorial">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<icon BUILTIN="broken-line"/>
+<node CREATED="1627666511312" ID="ID_532083303" MODIFIED="1627666537041" TEXT="kubectl get pods">
+<font ITALIC="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1627666530279" ID="ID_264817843" MODIFIED="1627666537720" TEXT="kubectl get services">
+<font ITALIC="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1627666525591" ID="ID_618157181" MODIFIED="1627666538816" TEXT="kubectl expose deployment/kubernetes-bootcamp --type=&quot;NodePort&quot; --port 8080">
+<font ITALIC="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1627666554807" ID="ID_1340756645" MODIFIED="1628097528224" TEXT="kubectl describe services kubernetes-bootcamp ">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      <font color="rgb(255, 255, 255)" face="SFMono-Regular, Consolas, Liberation Mono, Menlo, Courier, monospace">export NODE_PORT=$(kubectl get services/kubernetes-bootcamp -o go-template='{{(index .spec.ports 0).nodePort}}') echo NODE_PORT=$NODE_PORT</font>
+    </p>
+  </body>
+</html></richcontent>
+<font ITALIC="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1627666669183" ID="ID_1749395706" MODIFIED="1627666670640" TEXT="curl $(minikube ip):$NODE_PORT">
+<font ITALIC="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1627666688167" ID="ID_998015117" MODIFIED="1627666697144" TEXT="kubectl describe deployment">
+<font ITALIC="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1627666699264" ID="ID_1828085117" MODIFIED="1627666710271" TEXT="kubectl get pods -l app=kubernetes-bootcamp">
+<font ITALIC="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1627666766297" ID="ID_1226383762" MODIFIED="1627666773380" TEXT="kubectl get services -l app=kubernetes-bootcamp">
+<font ITALIC="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1627666781487" ID="ID_1741092448" MODIFIED="1627666783176" TEXT="kubectl label pods $POD_NAME version=v1">
+<font ITALIC="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1627666881343" ID="ID_654496625" MODIFIED="1627666883008" TEXT="kubectl describe pods $POD_NAME">
+<font ITALIC="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1627666888175" ID="ID_22962432" MODIFIED="1627666889672" TEXT="kubectl get pods -l version=v1">
+<font ITALIC="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1627666925600" ID="ID_1811575624" MODIFIED="1627666926960" TEXT="kubectl delete service -l app=kubernetes-bootcamp">
+<font ITALIC="true" NAME="SansSerif" SIZE="12"/>
+</node>
+</node>
+</node>
+<node CREATED="1627667020183" ID="ID_594646350" MODIFIED="1627667022430" POSITION="right" TEXT=" Running Multiple Instances of Your App">
+<icon BUILTIN="full-5"/>
+<node CREATED="1627667055743" ID="ID_1270059079" MODIFIED="1627667061851" TEXT="When traffic increase"/>
+<node CREATED="1627667062176" ID="ID_536445470" MODIFIED="1627667068667" TEXT="... need to scale the application"/>
+<node CREATED="1627667071455" ID="ID_723309681" MODIFIED="1627667083100" TEXT="... by changing number of replicas in deployment"/>
+<node CREATED="1627667097815" ID="ID_277056944" MODIFIED="1660307236439" TEXT="Scaling overview">
+<node CREATED="1627667105943" ID="ID_383142587" MODIFIED="1627667111060" TEXT="New Pods">
+<node CREATED="1627667111295" ID="ID_577660725" MODIFIED="1627667112403" TEXT="Created"/>
+<node CREATED="1627667112719" ID="ID_1727058" MODIFIED="1627667115163" TEXT="Scheduled"/>
+</node>
+<node CREATED="1627667118912" ID="ID_22368405" MODIFIED="1627667126188" TEXT="... to Nodes with available resources"/>
+</node>
+<node CREATED="1627667135687" ID="ID_611703337" MODIFIED="1627667143106" TEXT="Kubernetes support autoscaling too"/>
+<node CREATED="1627667152999" ID="ID_478240888" MODIFIED="1660307235222" TEXT="Scaling to zero also possible">
+<node CREATED="1627667158023" ID="ID_1367439839" MODIFIED="1627667162371" TEXT="Terminate all pods"/>
+<node CREATED="1627667162679" ID="ID_1666249515" MODIFIED="1627667168884" TEXT="... for a specified deployment"/>
+</node>
+<node CREATED="1627667193016" ID="ID_1705953231" MODIFIED="1660307234253" TEXT="Multiple instance of application running">
+<node CREATED="1627667198927" ID="ID_1255352594" MODIFIED="1627667205747" TEXT="Need a way to distribute traffic"/>
+<node CREATED="1627667207647" ID="ID_1263334063" MODIFIED="1627667217595" TEXT="Services have integrated load balancer"/>
+<node CREATED="1627667219657" ID="ID_937309580" MODIFIED="1627667225243" TEXT="... distribute network traffic"/>
+<node CREATED="1627667225543" ID="ID_771585861" MODIFIED="1627667233163" TEXT="... to all pods exposed deployment"/>
+</node>
+<node CREATED="1627667242215" ID="ID_1018503693" MODIFIED="1660307233123" TEXT="When multiple instances running">
+<node CREATED="1627667248231" ID="ID_961708704" MODIFIED="1627667252355" TEXT="Rolling updates without downtime"/>
+</node>
+<node CREATED="1627667262703" ID="ID_685457119" MODIFIED="1660307231545" TEXT="Interactive Tutorial">
+<font BOLD="true" NAME="SansSerif" SIZE="12"/>
+<icon BUILTIN="broken-line"/>
+<node CREATED="1628096375994" ID="ID_684363199" MODIFIED="1628096378959" TEXT="Step 1 - Scale">
+<node CREATED="1628012058863" ID="ID_1603808973" MODIFIED="1628012060842" TEXT=" kubectl get deployments">
+<font ITALIC="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1628096100453" ID="ID_125095360" MODIFIED="1628096107528" TEXT="See replicas created during deployment">
+<node CREATED="1628096107768" ID="ID_1654152682" MODIFIED="1628096111939" TEXT="kubectl get rs">
+<font ITALIC="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1628096163641" ID="ID_805737069" MODIFIED="1628096169407" TEXT="Name of ReplicaSet">
+<node CREATED="1628096169617" ID="ID_1058296592" MODIFIED="1628096183100" TEXT="Always [DEPLOYMENT-NAME]-[RANDOM-STRING]"/>
+<node CREATED="1628096183511" ID="ID_250069446" MODIFIED="1628096185859" TEXT="Pod name as seed"/>
+</node>
+</node>
+<node CREATED="1628096200096" ID="ID_533278346" MODIFIED="1628096266458" TEXT="kubectl scale deployments/kubernetes-bootcamp --replicas=4 ">
+<font ITALIC="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1628096313704" ID="ID_1822943313" MODIFIED="1628096314736" TEXT="kubectl get pods -o wide ">
+<font ITALIC="true" NAME="SansSerif" SIZE="12"/>
+</node>
+</node>
+<node CREATED="1628096382963" ID="ID_1415587311" MODIFIED="1628096387711" TEXT="Step 2 - Load Balancing">
+<node CREATED="1628096555972" ID="ID_1246813284" MODIFIED="1628096557405" TEXT="kubectl describe services/kubernetes-bootcamp">
+<font ITALIC="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1628096560724" ID="ID_1727265869" MODIFIED="1628096589827" TEXT="Kubernetes bootcamp">
+<richcontent TYPE="NOTE"><html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      export NODE_PORT=$(kubectl get services/kubernetes-bootcamp -o go-template='{{(index.spec.ports0).nodePort}}') echo NODE_PORT=$NODE_PORT
+    </p>
+  </body>
+</html></richcontent>
+<font ITALIC="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1628096663930" ID="ID_1752046369" MODIFIED="1628096665712" TEXT="curl $(minikube ip):$NODE_PORT">
+<font ITALIC="true" NAME="SansSerif" SIZE="12"/>
+</node>
+</node>
+<node CREATED="1628096674826" ID="ID_1657167174" MODIFIED="1628096678527" TEXT="Step 3 - Scale Down">
+<node CREATED="1628096682490" ID="ID_1735700467" MODIFIED="1628096684467" TEXT="kubectl scale deployments/kubernetes-bootcamp --replicas=2">
+<font ITALIC="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1628096705201" ID="ID_730179186" MODIFIED="1628096706571" TEXT="kubectl get deployments  ">
+<font ITALIC="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1628096710448" ID="ID_1982203675" MODIFIED="1628096712298" TEXT="kubectl get pods -o wide  ">
+<font ITALIC="true" NAME="SansSerif" SIZE="12"/>
+</node>
+</node>
+</node>
+</node>
+<node CREATED="1628096746343" FOLDED="true" ID="ID_1967360831" MODIFIED="1628096753097" POSITION="right" TEXT=" Performing a Rolling Update">
+<icon BUILTIN="full-6"/>
+<node CREATED="1628096760357" ID="ID_426021022" MODIFIED="1628096765835" TEXT="Updating an Application">
+<node CREATED="1628096809541" ID="ID_1873896578" MODIFIED="1628096821258" TEXT="Developers should deploy several times a day"/>
+<node CREATED="1628096781958" ID="ID_104089311" MODIFIED="1628096784690" TEXT="Rolling updates">
+<node CREATED="1628096786357" ID="ID_350237287" MODIFIED="1628096793194" TEXT="Deployments&apos; update"/>
+<node CREATED="1628096793557" ID="ID_663784572" MODIFIED="1628096796480" TEXT="... with 0 downtime"/>
+<node CREATED="1628096830548" ID="ID_639060139" MODIFIED="1628096840359" TEXT="Incrementally update pods instances"/>
+<node CREATED="1628096840692" ID="ID_1818791397" MODIFIED="1628096842449" TEXT="... with new ones"/>
+<node CREATED="1628096849012" ID="ID_555901757" MODIFIED="1628096863641" TEXT="They&apos;ll be scheduled on Nodes with available resources"/>
+</node>
+<node CREATED="1628096900413" ID="ID_1148252359" MODIFIED="1628096915649" TEXT="Default during updates">
+<node CREATED="1628096902020" ID="ID_63054705" MODIFIED="1628096941666" TEXT="Maximum number of pods that can be unavailable"/>
+<node CREATED="1628096920677" ID="ID_479099722" MODIFIED="1628096935385" TEXT="Maximum number of pods that can be created"/>
+<node CREATED="1628096935788" ID="ID_1650502242" MODIFIED="1628096936800" TEXT="... is one"/>
+</node>
+<node CREATED="1628096945709" ID="ID_1101508210" MODIFIED="1628096961209" TEXT="Updates are versioned and can be reverted to previous (stable) version"/>
+</node>
+<node CREATED="1628096966540" ID="ID_200974806" MODIFIED="1628096970753" TEXT="Rolling updates overview">
+<node CREATED="1628096982044" ID="ID_1829027553" MODIFIED="1628096996168" TEXT="Service load-balance traffic only to available Pods"/>
+<node CREATED="1628097018038" ID="ID_1564073251" MODIFIED="1628097021848" TEXT="Allow following actions">
+<node CREATED="1628097022590" ID="ID_46306231" MODIFIED="1628097029280" TEXT="Promote an application from one environment to another">
+<node CREATED="1628097044845" ID="ID_1399762573" MODIFIED="1628097051089" TEXT="Via container image updates"/>
+</node>
+<node CREATED="1628097030254" ID="ID_404101953" MODIFIED="1628097034482" TEXT="Rollback to previous versions"/>
+<node CREATED="1628097035448" ID="ID_1241024078" MODIFIED="1628097042083" TEXT="Delivery of applications with zero downtime"/>
+</node>
+</node>
+<node CREATED="1628097064071" ID="ID_311286626" MODIFIED="1628097068442" TEXT="Interactive tutorial">
+<node CREATED="1628097274974" ID="ID_455110018" MODIFIED="1628097279562" TEXT="Step 1 - Update version of app">
+<node CREATED="1628097074999" ID="ID_1503312943" MODIFIED="1628097076777" TEXT="kubectl get deployments">
+<font ITALIC="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1628097078887" ID="ID_1334607414" MODIFIED="1628097082287" TEXT="kubectl get pods">
+<font ITALIC="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1628097123223" ID="ID_185824789" MODIFIED="1628097124395" TEXT="kubectl describe pods">
+<font ITALIC="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1628097251852" ID="ID_1347910387" MODIFIED="1628097254362" TEXT="Change image">
+<node CREATED="1628097174595" ID="ID_1879579174" MODIFIED="1628097176650" TEXT="kubectl set image deployments/kubernetes-bootcamp kubernetes-bootcamp=jocatalin/kubernetes-bootcamp:v2">
+<font ITALIC="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1628097256269" ID="ID_1960873138" MODIFIED="1628097261266" TEXT="Old pods will terminating"/>
+<node CREATED="1628097261541" ID="ID_1403949423" MODIFIED="1628097264392" TEXT="New pods will be created"/>
+</node>
+</node>
+<node CREATED="1628097283478" ID="ID_889252159" MODIFIED="1628097297074" TEXT="Step 2 - Verify an update">
+<node CREATED="1628097305118" ID="ID_1890513464" MODIFIED="1628097306191" TEXT="kubectl describe services/kubernetes-bootcamp">
+<font ITALIC="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1628097333792" ID="ID_917059048" MODIFIED="1628097336048" TEXT="export NODE_PORT=$(kubectl get services/kubernetes-bootcamp -o go-template=&apos;{{(index .spec.ports 0).nodePort}}&apos;) echo NODE_PORT=$NODE_PORT  ">
+<font ITALIC="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1628097339728" ID="ID_438311865" MODIFIED="1628097341426" TEXT="curl $(minikube ip):$NODE_PORT">
+<font ITALIC="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1628097427619" ID="ID_1930320705" MODIFIED="1628097452946" TEXT="Each time run curl we can hit a different pod"/>
+<node CREATED="1628097480727" ID="ID_88923300" MODIFIED="1628097481888" TEXT="kubectl rollout status deployments/kubernetes-bootcamp ">
+<font ITALIC="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1628097506591" ID="ID_286190400" MODIFIED="1628097508095" TEXT="kubectl describe pods">
+<font ITALIC="true" NAME="SansSerif" SIZE="12"/>
+</node>
+</node>
+<node CREATED="1628097517576" ID="ID_834841511" MODIFIED="1628097522166" TEXT="Step 3 - Rollback an update">
+<node CREATED="1628097523537" ID="ID_531881062" MODIFIED="1628097526579" TEXT="kubectl set image deployments/kubernetes-bootcamp kubernetes-bootcamp=gcr.io/google-samples/kubernetes-bootcamp:v10">
+<font ITALIC="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1628097655546" ID="ID_1708922677" MODIFIED="1628097661060" TEXT="kubectl get pods  ">
+<font ITALIC="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1628097658745" ID="ID_1722780441" MODIFIED="1628097661651" TEXT="kubectl describe pods  ">
+<font ITALIC="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1628097665240" ID="ID_1649009462" MODIFIED="1628097666905" TEXT="kubectl rollout undo deployments/kubernetes-bootcamp  ">
+<font ITALIC="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1628097689276" ID="ID_1410383659" MODIFIED="1628097691301" TEXT="kubectl get pods">
+<font ITALIC="true" NAME="SansSerif" SIZE="12"/>
+</node>
+<node CREATED="1628097696627" ID="ID_669981718" MODIFIED="1628097698261" TEXT="kubectl describe pods">
+<font ITALIC="true" NAME="SansSerif" SIZE="12"/>
+</node>
+</node>
+</node>
+</node>
+</node>
+</map>
