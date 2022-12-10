@@ -57,7 +57,7 @@ Plug 'folke/which-key.nvim' "# key-hints
 Plug 'tpope/vim-fugitive' "# git plugin :help fugutive
 Plug 'lewis6991/gitsigns.nvim' "# git highlights
 Plug 'Raimondi/delimitMate' "# auto close  , ' , ( , [ , etc.
-Plug 'kevinhwang91/nvim-hlslens' "# better search highlights
+" Plug 'kevinhwang91/nvim-hlslens' "# better search highlights
 Plug 'ms-jpq/coq_nvim', {'branch': 'coq'}
 Plug 'ms-jpq/coq.artifacts', {'branch': 'artifacts'}
 Plug 'ms-jpq/coq.thirdparty', {'branch': '3p'}
@@ -88,6 +88,10 @@ Plug 'gelguy/wilder.nvim', { 'do': 'UpdateRemotePlugins' } "# commands autocompl
 Plug 'roxma/nvim-yarp'
 Plug 'roxma/vim-hug-neovim-rpc'
 Plug 'kdheepak/lazygit.nvim'
+Plug 'nvim-treesitter/nvim-treesitter-context'
+Plug 'glepnir/lspsaga.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+Plug 'rcarriga/nvim-dap-ui'
   
 
 call plug#end()
@@ -130,6 +134,59 @@ vim.g.coq_settings = {
 
 local servers = {'pyright','rust_analyzer'}
 
+local dap = require('dap')
+
+dap.adapters.lldb = {
+  type = 'executable',
+  command = '/usr/bin/lldb', -- adjust as needed, must be absolute path
+  name = 'lldb'
+}
+
+dap.configurations.cpp = {
+  {
+    name = 'Launch',
+    type = 'lldb',
+    request = 'launch',
+    program = function()
+      return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+    end,
+    cwd = '${workspaceFolder}',
+    stopOnEntry = false,
+    args = {},
+
+    -- 💀
+    -- if you change `runInTerminal` to true, you might need to change the yama/ptrace_scope setting:
+    --
+    --    echo 0 | sudo tee /proc/sys/kernel/yama/ptrace_scope
+    --
+    -- Otherwise you might get the following error:
+    --
+    --    Error on launch: Failed to attach to the target process
+    --
+    -- But you should be aware of the implications:
+    -- https://www.kernel.org/doc/html/latest/admin-guide/LSM/Yama.html
+    -- runInTerminal = false,
+  },
+}
+
+-- If you want to use this for Rust and C, add something like this:
+
+dap.configurations.c = dap.configurations.cpp
+dap.configurations.rust = dap.configurations.cpp
+
+local keymap = vim.keymap.set
+local saga = require('lspsaga')
+
+saga.init_lsp_saga()
+
+keymap("n", "[E", function()
+require("lspsaga.diagnostic").goto_prev({ severity = vim.diagnostic.severity.ERROR })
+end, { silent = true })
+keymap("n", "]E", function()
+require("lspsaga.diagnostic").goto_next({ severity = vim.diagnostic.severity.ERROR })
+end, { silent = true })
+
+
 for _, lsp in ipairs(servers) do
   lspconfig[lsp].setup(require('coq').lsp_ensure_capabilities({
   }))
@@ -148,16 +205,48 @@ require('mason').setup()
 
 require('mason-lspconfig').setup()
 
-require('rust-tools').setup({})
+local opts = {
+  tools = {
+    runnables = {
+      use_telescope = true,
+    },
+    inlay_hints = {
+      auto = true,
+      show_parameter_hints = false,
+      parameter_hints_prefix = "",
+      other_hints_prefix = "",
+    },
+  },
+  -- all the opts to send to nvim-lspconfig
+  -- these override the defaults set by rust-tools.nvim
+  -- see https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md#rust_analyzer
+  server = {
+    -- on_attach is a callback called when the language server attachs to the buffer
+    on_attach = on_attach,
+    settings = {
+      -- to enable rust-analyzer settings visit:
+      -- https://github.com/rust-analyzer/rust-analyzer/blob/master/docs/user/generated_config.adoc
+      ["rust-analyzer"] = {
+        -- enable clippy on save
+        checkOnSave = {
+          command = "clippy",
+        },
+      },
+    },
+  },
+}
+
+require('rust-tools').setup(opts)
 
 require('lsp_lines').setup()
 
 
-require('hlslens').setup({
-    calm_down = true,
-    nearest_only = true,
-    nearest_float_when = 'always'
-})
+--require('hlslens').setup({
+--    calm_down = true,
+--    nearest_only = true,
+--    nearest_float_when = 'always'
+--})
+
 require('lualine').setup ()
 require('lualine').setup {
     options = { theme  =  'nightfly' },
@@ -182,6 +271,8 @@ require('nvim-treesitter.configs').setup {
   ignore_install = { "javascript" },
   highlight = {enable = true},
 }
+
+require("dapui").setup()
 
 vim.opt.list = true
 vim.opt.listchars:append("space:•")
@@ -237,11 +328,39 @@ nnoremap <Right> <C-w>l
 " nnoremap <leader>v <cmd>CHADopen<cr>
 nnoremap <silent> <Tab> :BufferLineCycleNext<CR>
 nnoremap <silent> <S-Tab> :BufferLineCyclePrev<CR>
-nnoremap <leader>d :DelimitMateSwitch<cr>
-nnoremap <leader>f :FZF<cr>
+nnoremap <leader>m :DelimitMateSwitch<cr>
+" nnoremap <leader>f :FZF<cr>
+nnoremap <leader>ff <cmd>Telescope find_files<cr>
+nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+nnoremap <leader>fb <cmd>Telescope buffers<cr>
+nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 nnoremap <leader>u :MundoToggle<cr>
-nnoremap <silent> <leader>gg :LazyGit<CR>
+nnoremap <silent> <leader>g :LazyGit<CR>
 map <esc> :noh<cr>
+
+nnoremap <silent> <F5> <Cmd>lua require'dap'.continue()<CR>
+nnoremap <silent> <F10> <Cmd>lua require'dap'.step_over()<CR>
+nnoremap <silent> <F11> <Cmd>lua require'dap'.step_into()<CR>
+nnoremap <silent> <F12> <Cmd>lua require'dap'.step_out()<CR>
+nnoremap <silent> <Leader>db <Cmd>lua require'dap'.toggle_breakpoint()<CR>
+nnoremap <silent> <Leader>dB <Cmd>lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>
+nnoremap <silent> <Leader>dm <Cmd>lua require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>
+nnoremap <silent> <Leader>dr <Cmd>lua require'dap'.repl.open()<CR>
+nnoremap <silent> <Leader>dl <Cmd>lua require'dap'.run_last()<CR>
+nnoremap <silent> <Leader>dt <Cmd>lua require'dapui'.toggle()<CR>
+
+nnoremap <silent> <Leader>dt <Cmd>lua require'dapui'.toggle()<CR>
+
+nnoremap <silent> <leader>ca <cmd>Lspsaga code_action<CR>
+xnoremap <silent> <leader>ca <cmd>Lspsaga code_action<CR>
+nnoremap <silent> <leader>cr <cmd>Lspsaga rename<CR>
+nnoremap <silent> gd <cmd>Lspsaga lsp_finder<CR>
+nnoremap <silent> <leader>cd <cmd>Lspsaga show_line_diagnostics<CR>
+nnoremap <silent> <leader>cd <cmd>Lspsaga show_cursor_diagnostics<CR>
+nnoremap <silent> [e <cmd>Lspsaga diagnostic_jump_prev<CR>
+nnoremap <silent> ]e <cmd>Lspsaga diagnostic_jump_next<CR>
+nnoremap <silent> <leader>o <cmd>LSoutlineToggle<CR>
+nnoremap <silent> K <cmd>Lspsaga hover_doc<CR>
 
 tnoremap <Esc> <C-\><C-n>
 
@@ -259,5 +378,5 @@ if exists("g:neovide")
     let g:neovide_cursor_antialiasing=v:true
     let g:neovide_cursor_trail_length=0.1
     let g:neovide_cursor_vfx_mode = "railgun"
-    set guifont=Fire\Code
+    " set guifont=Fire\Code
  endif

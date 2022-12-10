@@ -1,7 +1,0 @@
-#!/bin/bash
-
-conky -c ~/.dotfiles/conky/conky_hotkeys &&
-conky -c ~/.dotfiles/conky/conky_system &&
-conky -c ~/.dotfiles/conky/conky_calendar &&
-
-exit 0

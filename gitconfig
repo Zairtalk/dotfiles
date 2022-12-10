@@ -1,5 +1,10 @@
 [user]
 	email = ybzba7@hotmail.com
 	name = Danylo Bodnarchuk
+	signingKey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBPKPrAiBH7pq8BTnyiWbXY1G97MINgXtP+Jez8omqBi ybzba7@hotmail.com
 [credential]
 	helper = store
+[commit]
+	gpgSign = true
+[gpg]
+	format = ssh

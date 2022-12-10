@@ -77,7 +77,7 @@ case $chosen in
     $hibernation)
 		# ans=$(confirm_exit &)
 		# if [[ $ans == "yes" || $ans == "YES" || $ans == "y" || $ans == "Y" ]]; then
-			systemctl hibernate
+			systemctl suspend-then-hibernate
 		# elif [[ $ans == "no" || $ans == "NO" || $ans == "n" || $ans == "N" ]]; then
 		# 	exit 0
         # else

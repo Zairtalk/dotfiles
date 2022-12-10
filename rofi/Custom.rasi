@@ -29,6 +29,7 @@
     selected-urgent-background:  rgba ( 165, 66, 66, 100 % );
     alternate-urgent-foreground: @urgent-foreground;
     background-color:            rgba ( 0, 0, 0, 0 % );
+    active-background:           #FF9e64;
     alternate-active-foreground: @active-foreground;
     selected-active-background:  @selected-normal-background;
 }
